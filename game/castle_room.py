@@ -18,3 +18,6 @@ class Castle(Room):
         "your eyes and suddenly you realize that you have been sleeping the "
         "whole time and it all was just a dream.")
         self.game.win()
+        return  ("You are laying down to bed, which still feels warm. You close "
+        "your eyes and suddenly you realize that you have been sleeping the "
+        "whole time and it all was just a dream.")

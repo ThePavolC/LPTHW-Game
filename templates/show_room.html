@@ -1,0 +1,26 @@
+$def with (room, state, room_object)
+
+<h1> $room.name </h1>
+
+<p>
+$room.description
+</p>
+
+<p>
+<h2>Exits</h2>
+    <ul>
+        <li>North: $room_object.get('north')</li>
+        <li>East : $room_object.get('east')</li>
+        <li>South: $room_object.get('south')</li>
+        <li>West : $room_object.get('west')</li>
+    </ul>
+</p>
+
+$if state == "killed":
+	<p><a href="/">Play Again?</a></p>
+$else:
+	<p>
+	<form action="/game" method="POST">
+		- <input type="text" name="action"> <input type="SUBMIT">
+	</form>
+	</p>

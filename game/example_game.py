@@ -38,5 +38,7 @@ a_map.add_room(castle,north=None,east=pathway,south=passage,west=None)
 
 # starting room
 a_map.set_current_room(forrest)
-# starting the game
-game.play()
+
+if __name__ == "__main__":
+    # starting the game
+    game.play()

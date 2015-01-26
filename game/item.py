@@ -11,4 +11,4 @@ class Item(object):
         return self.name
 
     def use(self):
-        print self.get_name(), "used"
+        pass

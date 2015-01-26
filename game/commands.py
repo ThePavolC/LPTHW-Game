@@ -33,6 +33,7 @@ class Parser(object):
             self.use(command_list)
         else:
             print "Command '%s' not recognized." % command
+            return None
         
     def go(self, command_list):
         """
@@ -44,12 +45,14 @@ class Parser(object):
                 next_room = self.a_map.get_exit(direction)
                 if next_room:
                     self.a_map.change_room(next_room)
+                    return next_room
                 else:
                     print "You can't go there"
             else:
                 print "To use 'go', type 'go <direction>'"
         else:
             print "To use 'go', type 'go <direction>'"
+        return None
                     
     def show(self):
         """
@@ -65,6 +68,7 @@ class Parser(object):
         print "Commands:"
         for c in COMMANDS:
             print "\t%s" % COMMANDS[c]
+        return COMMANDS
 
     def use(self, command_list):
         """
@@ -75,6 +79,7 @@ class Parser(object):
             item = self.a_map.get_current_room().get_item(item_name)
             if item:
                 item.use()
+        return None
     
     def run_commands(self, commands_list):
         """

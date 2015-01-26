@@ -41,8 +41,10 @@ class Map(object):
         new_room = self.find_room_object(room)
         if new_room:
             self.current_room = new_room
+            return self.current_room
         else:
             print "Room doesnt exist"
+            return None
     
     def get_current_room(self):
         if self.current_room:
@@ -62,11 +64,16 @@ class Map(object):
         Print used with 'show' command
         """
         room_object = self.find_room_object(self.get_current_room())
-        print "-- Exits --"
-        print "\tNorth:", room_object.get('north')
-        print "\tEast:", room_object.get('east')
-        print "\tSouth:", room_object.get('south')
-        print "\tWest:", room_object.get('west')
+        message = """-- Exits --
+        North: %s
+        East: %s
+        South: %s
+        West: %s
+        """ % (room_object.get('north'),room_object.get('east'),
+            room_object.get('south'),room_object.get('west'))
+        print message
+        return message
+
     
     def find_room_object(self, room):
         """
@@ -88,6 +95,8 @@ class Map(object):
             self.current_room.get('room').leaving()
             self.current_room = found_room
             found_room.get('room').entering()
+            return self.current_room
         else:
             print ("Cant go to next room, the room '%s' doesnt exists" 
                 % next_room)
+            return None

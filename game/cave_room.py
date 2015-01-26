@@ -19,23 +19,36 @@ class Cave(Room):
         """
         Kills user when he uses rock on bear
         """
-        if self.apple_used:
-            print "You are throwing rocks around, very good."
-            return
-        print ("You woke up bear by throwing rock at him. He is not happy. You "
+        
+        apple_used_text = "You are throwing rocks around, very good."
+        bear_up_text = ("You woke up bear by throwing rock at him. He is not happy. You "
         "are trying to run away, but he gots you and it's not pretty, for you.")
+        
+        if self.apple_used:
+            print apple_used_text
+            return apple_used_text
+        
+        print bear_up_text
         self.game.kill()
+        return bear_up_text
         
     def use_apple(self):
         """
         Opens exit and get rid of the bear in room
         """
+        
+        apple_used1_text = "You threw apple out of cave and bear run after it."
+        new_description = ("Very dark cave. It looks like it's rocks and some "
+        "old apples lying around. Thank god no bears around.")
+        apple_used2_text = "Little bit bitten but still good apple, yummmy."
+        
+        
         if self.apple_used:
-            print "Little bit bitten but still good apple, yummmy."
-            return
+            print apple_used2_text
+            return apple_used2_text
         
         self.apple_used = True
-        print "You threw apple out of cave and bear run after it."
-        self.description = ("Very dark cave. It looks like it's rocks and some "
-        "old apples lying around. Thank god no bears around.")
+        self.description = new_description
         self.game.get_map().add_exit(self,'east','Passage')
+        print apple_used1_text
+        return apple_used1_text

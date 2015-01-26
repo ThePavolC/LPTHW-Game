@@ -163,3 +163,30 @@ def test_kill3():
     game.get_parser().run_commands(win_commands)
     
     assert_equal(game.get_state(), 'killed')
+    
+def test_mistakes():
+    """
+    This should test typos and incorrect use of commands
+    """
+    a_map = Map()
+    parser = Parser(a_map)
+    game = Engine(a_map, parser)
+    forrest = Forrest()
+    pond = Pond()
+    a_map.add_room(forrest,north=pond,east=None,south=None,west=None)
+    a_map.set_current_room(forrest)
+    
+    assert_equal(game.get_state(), 'playing')
+    
+    # incorrect use of 'go' command
+    game.get_parser().parse('go')
+    assert_equal(game.get_map().get_current_room(), forrest)
+    game.get_parser().parse('go qweasd')
+    assert_equal(game.get_map().get_current_room(), forrest)
+    game.get_parser().parse('go south')
+    assert_equal(game.get_map().get_current_room(), forrest)
+    
+    # object not present in the room
+    assert_equal(game.get_parser().parse('use stick'), None)
+    # incorrect use of 'use' command
+    assert_equal(game.get_parser().parse('use'), None)

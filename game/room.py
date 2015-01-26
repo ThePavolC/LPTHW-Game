@@ -15,15 +15,16 @@ class Room(object):
         return self.name
         
     def print_description(self):
-        print "-- %s --" % self.name
-        print textwrap.fill(self.description, width=40, initial_indent='  ')
+        description = "-- %s --\n" % self.name
+        description += textwrap.fill(self.description, width=40, initial_indent='  ')
+        print description
+        return description
 
     def show(self):
         """
         Used with 'show' command
         """
-        self.print_description()
-        print ""
+        return self.print_description()
 
     def get_item(self, item_name):
         """
@@ -34,6 +35,7 @@ class Room(object):
                 return item
         else:
             print "The '%s' is not here." % item_name
+            return None
     
     def leaving(self):
         """

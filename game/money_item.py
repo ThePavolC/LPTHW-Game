@@ -15,7 +15,7 @@ class Money(Item):
         When money used twice then it will kill user
         """
         if self.use_counter == 2:
-            print self.room.money_used(self.use_counter)
+            self.room.money_used(self.use_counter)
             self.use_counter -= 1
         elif self.use_counter == 1:
-            print self.room.money_used(self.use_counter)
+            self.room.money_used(self.use_counter)
